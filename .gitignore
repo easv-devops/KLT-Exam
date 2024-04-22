@@ -7,3 +7,4 @@ db/data
 db/DbMigrations/flyway.conf
 
 db_password.txt
+watchtower_http_api_token.txt
