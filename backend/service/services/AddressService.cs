@@ -1,4 +1,7 @@
-﻿namespace service;
+﻿using infrastructure.dataModels;
+using infrastructure.repositories;
+
+namespace service.services;
 
 public class AddressService
 {

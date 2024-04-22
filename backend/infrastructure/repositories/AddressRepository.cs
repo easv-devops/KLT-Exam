@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using infrastructure.datamodels;
+using infrastructure.dataModels;
 using Npgsql;
 
 namespace infrastructure.repositories;
@@ -22,7 +22,7 @@ public class AddressRepository
         }
     }
 
-    public AddressModel PostCurrency(AddressModel addressModel)
+    public AddressModel PostAddress(AddressModel addressModel)
     {
         var sql = @"INSERT INTO Addresses (""Name"", ""StreetnameAndNumber"", ""Zip"", ""City"") VALUES (@Name, @StreetnameAndNumber, @Zip, @City) RETURNING *;";
         using (var conn = _dataSource.OpenConnection())

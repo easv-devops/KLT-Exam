@@ -1,4 +1,4 @@
-﻿namespace infrastructure.datamodels;
+﻿namespace infrastructure.dataModels;
 
 public class AddressModel
 {

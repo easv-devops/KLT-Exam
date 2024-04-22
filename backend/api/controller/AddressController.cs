@@ -1,4 +1,9 @@
-﻿namespace DefaultNamespace;
+﻿using api.TransferModels;
+using infrastructure.dataModels;
+using Microsoft.AspNetCore.Mvc;
+using service.services;
+
+namespace api.controller;
 
 [ApiController]
 public class AddressController
@@ -17,7 +22,7 @@ public class AddressController
         return new ResponseDto()
         {
             MessageToClient = "Successfully got all addresses",
-            ResponseData = _addressService.GetAdress()
+            ResponseData = _addressService.GetAddress()
         };
     }
 
@@ -28,7 +33,7 @@ public class AddressController
         return new ResponseDto()
         {
             MessageToClient = "Successfully created a new entry of address",
-            ReponseData = _addressService.PostAddress(addressModel)
+            ResponseData = _addressService.PostAddress(addressModel)
         };
     }
 }
