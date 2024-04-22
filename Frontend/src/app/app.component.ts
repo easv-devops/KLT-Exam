@@ -10,18 +10,18 @@ import {firstValueFrom} from "rxjs";
 
 
     <ion-content>
-      <ion-header>Address Book </ion-header>
+      <ion-header>Address Book</ion-header>
 
-        <ion-row>
-          <ion-col size="1">
-      Name
-          </ion-col>
-          <ion-col>
+      <ion-row>
+        <ion-col size="1">
+          Name
+        </ion-col>
+        <ion-col>
 
-            <input id="input1" [(ngModel)]="value1">
-          </ion-col>
+          <input id="input1" [(ngModel)]="value1">
+        </ion-col>
 
-        </ion-row>
+      </ion-row>
       <ion-row>
         <ion-col size="1">
           Address
@@ -34,7 +34,7 @@ import {firstValueFrom} from "rxjs";
 
         <ion-col size="1">
 
-      Zip
+          Zip
         </ion-col>
 
         <ion-col size="2.3">
@@ -44,10 +44,10 @@ import {firstValueFrom} from "rxjs";
         </ion-col>
         <ion-col size="0.8">
 
-      City
+          City
 
         </ion-col>
-        <ion-col >
+        <ion-col>
 
           <input id="input3" [(ngModel)]="value4">
 
@@ -60,10 +60,10 @@ import {firstValueFrom} from "rxjs";
 
       </ion-row>
 
-      <h1 id="h1-1">Saved name is: {{Succes}}</h1>
+      <h1 id="h1-1">Saved name is: {{ Succes }}</h1>
 
 
-      <p id="h1-2">version: {{version}}</p>
+      <p id="h1-2">version: {{ version }}</p>
 
 
       <ion-row>
@@ -89,34 +89,31 @@ import {firstValueFrom} from "rxjs";
         </ion-col>
 
 
-
       </ion-row>
-
 
 
       <div *ngFor="let his of addresses">
 
 
-        <ion-row >
+        <ion-row>
           <ion-col style=" border: 2px solid #000;">
-            <h1>{{his.Name}}</h1>
+            <h1>{{ his.name }}</h1>
           </ion-col>
 
           <ion-col style=" border: 2px solid #000;">
-            <h1>{{his.StreetnameAndNumber}}</h1>
+            <h1>{{ his.streetnameAndNumber }}</h1>
           </ion-col>
 
           <ion-col style=" border: 2px solid #000;">
-            <h1>{{his.Zip}}</h1>
+            <h1>{{ his.zip }}</h1>
           </ion-col>
 
           <ion-col style=" border: 2px solid #000;">
-            <h1>{{his.City}}</h1>
+            <h1>{{ his.city }}</h1>
           </ion-col>
 
 
         </ion-row>
-
 
 
       </div>
@@ -146,10 +143,10 @@ export class AppComponent implements  OnInit{
 
 
     let addressModel: addressModel = {
-      Name: this.value1,
-      StreetnameAndNumber:this.value2,
-      Zip: this.value3,
-      City: this.value4
+      name: this.value1,
+      streetnameAndNumber:this.value2,
+      zip: this.value3,
+      city: this.value4
 
     }
 
@@ -159,7 +156,7 @@ export class AppComponent implements  OnInit{
 
 
     addressModel=response.responseData;
-    this.Succes=addressModel.Name;
+    this.Succes=addressModel.name;
     this.getAddresses();
 
   }
@@ -172,7 +169,7 @@ export class AppComponent implements  OnInit{
     var result= await firstValueFrom(this.http.get<ResponseDto<addressModel[]>>(environment.baseUrl+ "/address/get"))
     this.addresses=result.responseData;
 
-
+    console.log(result.responseData);
   }
 
 
