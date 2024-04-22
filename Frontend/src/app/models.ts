@@ -1,9 +1,8 @@
 export interface addressModel {
-  Name: string;
-  StreetnameAndNumber: string;
-  Zip: string;
-  City: string;
-
+  name: string;
+  streetnameAndNumber: string;
+  zip: string;
+  city: string;
 }
 
 
