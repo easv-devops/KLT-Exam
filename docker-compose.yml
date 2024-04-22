@@ -1,0 +1,27 @@
+services:
+  database:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    hostname: app-database
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    ports:
+      - 5432:5432
+
+  flyway:
+    image: flyway/flyway:10
+    command: migrate
+    volumes:
+      - ./db/DbMigrations:/flyway/sql
+      - ./db/DbMigrations:/flyway/conf
+    depends_on:
+      - database
+
+secrets:
+  db_password:
+    file: db_password.txt
