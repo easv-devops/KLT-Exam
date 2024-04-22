@@ -2,3 +2,8 @@ bin
 obj
 node_modules
 .idea
+
+db/data
+db/DbMigrations/flyway.conf
+
+db_password.txt
