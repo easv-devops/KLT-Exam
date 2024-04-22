@@ -36,4 +36,11 @@ public class AddressController
             ResponseData = _addressService.PostAddress(addressModel)
         };
     }
+
+    [HttpGet]
+    [Route("/address/getVersion")]
+    public double GetVersion()
+    {
+        return 0.1;
+    }
 }
