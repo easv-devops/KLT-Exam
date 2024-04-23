@@ -36,7 +36,7 @@ steps:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: ./backend
+      context: backend
       dockerfile: api/Dockerfile
       repo: hoeeg79/address-book-api
       tags:
