@@ -60,7 +60,7 @@ steps:
     environment:
       WATCHTOWER_HTTP_API_TOKEN: watchtower_token
     commands:
-      - "curl --fail -X GET 'http://144.91.64.53:8080/v1/update' -H 'Authorization: Bearer ${WATCHTOWER_TOKEN}" # Must match the token defined in docker-compose.yml
+      - "curl --fail -X GET 'http://144.91.64.53:8080/v1/update' -H 'Authorization: Bearer %{WATCHTOWER_TOKEN}" # Must match the token defined in docker-compose.yml
       - sleep 10
     depends_on:
       - publish api
