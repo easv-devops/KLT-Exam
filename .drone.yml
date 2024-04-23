@@ -62,7 +62,7 @@ steps:
         from_secret: watchtower_token
     commands:
       - echo $WATCHTOWER_HTTP_API_TOKEN
-      - "curl --fail -X GET 'http://144.91.64.53:8080/v1/update' -H 'Authorization: Bearer "$WATCHTOWER_HTTP_API_TOKEN # Must match the token defined in docker-compose.yml
+      - "curl --fail -X GET 'http://144.91.64.53:8080/v1/update' -H 'Authorization: Bearer $WATCHTOWER_HTTP_API_TOKEN'" # Must match the token defined in docker-compose.yml
       - sleep 10
     depends_on:
       - publish frontend
