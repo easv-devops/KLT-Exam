@@ -36,8 +36,8 @@ steps:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: backend
-      dockerfile: api/Dockerfile
+      context: .
+      dockerfile: backend/api/Dockerfile
       repo: hoeeg79/address-book-api
       tags:
         - staging
