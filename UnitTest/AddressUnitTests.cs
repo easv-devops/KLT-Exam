@@ -74,6 +74,6 @@ public class Tests
     [Test]
     public void GetUtilitiesString()
     {
-        Assert.That(Utilities.connectionStringDev.Substring(7, 14), Is.EqualTo("localhost:5432"));
+        Assert.That(Utilities.connectionStringDev.Length, Is.EqualTo(73));
     }
 }

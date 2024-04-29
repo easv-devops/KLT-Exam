@@ -8,6 +8,8 @@ steps:
     environment:
       SONARSECRET:
         from_secret: SonarQubeSecret
+      PGPASSWORD:
+        from_secret: PostgresPassword
     commands:
       #- exit 0
       - dotnet sonarscanner begin
