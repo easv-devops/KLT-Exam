@@ -1,7 +1,7 @@
 const {Selector} = require("testcafe");
 
 //fixture('Getting Started').page('http://144.91.64.53:8081/');
-fixture('Getting Started').page('http://144.91.64.53:8081/');
+fixture('Getting Started').page('http://localhost:4200/');
 
 test('Testing of testCafe', async  t =>
 {
@@ -24,7 +24,7 @@ test('Testing of testCafe', async  t =>
       .wait(2000)
 
 
-      .expect(H1.textContent).eql('Jens Jensen') //Her testes om værdien i paragraf er Tekst1
+      .expect(H1.textContent).eql('Saved name is: Jens Jensen') //Her testes om værdien i paragraf er Tekst1
 
 });
 
