@@ -1,26 +1,6 @@
 const {Selector} = require("testcafe");
-const { RequestHook } = require('testcafe');
 
-class ProtocolSwitchHook extends RequestHook {
-  constructor () {
-    super();
-  }
-
-  async onRequest (event) {
-    if (event.requestOptions.protocol === 'https:') {
-      event.requestOptions.protocol = 'http:';
-    }
-  }
-
-  async onResponse () {
-    // No response processing needed.
-  }
-}
-
-const protocolSwitchHook = new ProtocolSwitchHook();
-
-
-fixture('Getting Started').page('http://144.91.64.53:8081/').requestHooks(protocolSwitchHook);
+fixture('Getting Started').page('http://144.91.64.53:8081/');
 //fixture('Getting Started').page('http://localhost:4200/');
 
 test('Testing of testCafe', async  t =>
