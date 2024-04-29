@@ -1,7 +1,7 @@
 const {Selector} = require("testcafe");
 
-//fixture('Getting Started').page('http://144.91.64.53:8081/');
-fixture('Getting Started').page('http://localhost:4200/');
+fixture('Getting Started').page('http://144.91.64.53:8081/');
+//fixture('Getting Started').page('http://localhost:4200/');
 
 test('Testing of testCafe', async  t =>
 {
