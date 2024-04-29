@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options => {
-    options.SetIsOriginAllowed(origin => true)
+    options.WithOrigins("http://144.91.64.53")
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();
