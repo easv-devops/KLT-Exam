@@ -1,4 +1,5 @@
 using api.controller;
+using infrastructure;
 using infrastructure.dataModels;
 using infrastructure.repositories;
 using service.services;
@@ -33,6 +34,7 @@ public class Tests
         var repository = new AddressRepository(null);
         var service = new AddressService(repository);
         var controller = new AddressController(service);
+        var utilites = new Utilities();
 
         var Testaddress = new AddressModel
             { Name = "Test1", StreetnameAndNumber = "Test Street 1", Zip = "12345", City = "Test City 1" };
