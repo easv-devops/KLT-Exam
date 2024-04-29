@@ -67,3 +67,7 @@ steps:
     depends_on:
       - publish frontend
       - publish api
+
+trigger:
+  branch:
+    - main
