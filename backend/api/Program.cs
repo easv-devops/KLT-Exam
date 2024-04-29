@@ -43,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(options => {
-    options.WithOrigins("http://144.91.64.53")
+    options.WithOrigins("http://144.91.64.53:8081", "http://localhost:8081")
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();
