@@ -42,11 +42,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options => {
+app.UseCors(options =>
+{
     options.WithOrigins("http://144.91.64.53:8081", "http://localhost:8081")
         .AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowCredentials();
+        .AllowAnyHeader();
 });
 
 app.UseAuthentication();
