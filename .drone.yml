@@ -103,3 +103,4 @@ steps:
 trigger:
   branch:
     - main
+    - feature-AddTestCafeAndK6ToDrone
