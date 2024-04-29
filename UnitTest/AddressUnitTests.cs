@@ -67,7 +67,6 @@ public class Tests
 
         var version = controller.GetVersion();
         
-        Assert.IsNotNull(version);
         Assert.That(version, Is.EqualTo(0.1));
     }
 
