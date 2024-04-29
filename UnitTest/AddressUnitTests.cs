@@ -74,6 +74,6 @@ public class Tests
     [Test]
     public void GetUtilitiesString()
     {
-        Assert.That(Utilities.connectionStringDev.Length, Is.EqualTo(73));
+        Assert.That(Utilities.connectionStringDev, Has.Length.EqualTo(73));
     }
 }
