@@ -96,7 +96,7 @@ steps:
     commands:
       - k6 run Test/spike_test.js
       - k6 run Test/StressTest.js
-      - k6 run Test/LoadTest.js
+      - k6 run Test/load_test.js
     depends_on:
       - end-to-end tests
 
