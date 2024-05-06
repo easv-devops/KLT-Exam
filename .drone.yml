@@ -46,6 +46,8 @@ steps:
 
   - name: publish frontend
     image: plugins/docker
+    environment:
+      - TARGET: "test"
     settings:
       username:
         from_secret: DockerUsername
@@ -126,6 +128,8 @@ steps:
 
   - name: publish frontend
     image: plugins/docker
+    environment:
+      - TARGET: "production"
     settings:
       username:
         from_secret: DockerUsername
