@@ -35,6 +35,7 @@ services:
     image: hoeeg79/address-book-api:staging
     environment:
       - PGPASSWORD=/run/secrets/db_password
+      - seq=http://144.91.74.225:5341
     ports:
       - 5100:8080
     secrets:
