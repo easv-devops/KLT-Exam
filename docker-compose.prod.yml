@@ -1,0 +1,6 @@
+services:
+  frontend:
+    image: hoeeg79/address-book-frontend:prod
+  
+  api:
+    image: hoeeg79/address-book-api:prod
