@@ -69,6 +69,38 @@ steps:
     depends_on:
       - publish frontend
       - publish api
+        
+  - name: update database
+    image: flyway/flyway
+    environment: 
+        POSTGRES_USER: 
+          from_secret: PostgresUser
+        POSTGRES_PASSWORD: 
+          from_secret: PostgresPassword
+    commands:
+      - flyway migrate
+        -url=jdbc:postgresql://144.91.64.53:5432/postgres
+        -user="$POSTGRES_USER"
+        -password="$POSTGRES_PASSWORD"
+        -locations=filesystem:./db/DbMigrations
+    depends_on:
+      - trigger update
+
+  - name: end-to-end tests
+    image: testcafe/testcafe
+    commands:
+      - testcafe firefox:headless Test/TestCafe.js
+    depends_on:
+      - update database
+
+  - name: performance tests
+    image: grafana/k6
+    commands:
+      - k6 run Test/spike_test.js
+      - k6 run Test/StressTest.js
+      - k6 run Test/load_test.js
+    depends_on:
+      - end-to-end tests
 
 trigger:
   branch:
