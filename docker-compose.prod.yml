@@ -1,0 +1,6 @@
+services:
+  weather-frontend:
+    image: hoeeg79/address-book-frontend:prod
+  
+  weather-api:
+    image: hoeeg79/address-book-api:prod
