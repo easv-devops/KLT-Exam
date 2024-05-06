@@ -8,8 +8,10 @@ steps:
     environment:
       SONARSECRET:
         from_secret: SonarQubeSecret
+      PGPASSWORD:
+        from_secret: PostgresPassword
     commands:
-      - exit 0
+      #- exit 0
       - dotnet sonarscanner begin
         /k:"easv-devops_KLT-Exam_AY8HIPrmEVvRW2O60E0H"
         /d:sonar.host.url="http://sonar.setgo.dk:9000"

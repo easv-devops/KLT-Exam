@@ -6,7 +6,7 @@ using service.services;
 namespace api.controller;
 
 [ApiController]
-public class AddressController
+public class AddressController : Controller
 {
     private readonly AddressService _addressService;
 
