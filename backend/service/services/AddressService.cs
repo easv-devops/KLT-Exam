@@ -1,5 +1,6 @@
 ﻿using infrastructure.dataModels;
 using infrastructure.repositories;
+using Monitoring;
 
 namespace service.services;
 
@@ -14,6 +15,7 @@ public class AddressService
     
     public IEnumerable<AddressModel> GetAddress()
     {
+        MonitorService.Log.Debug("SAY HELLO TO MY LITTLE FRIEND");
         return _addressRepository.GetAddress();
     } 
     
