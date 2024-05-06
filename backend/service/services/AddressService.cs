@@ -15,12 +15,13 @@ public class AddressService
     
     public IEnumerable<AddressModel> GetAddress()
     {
-        MonitorService.Log.Debug("SAY HELLO TO MY LITTLE FRIEND");
+        MonitorService.Log.Debug("Entered GetAddress in service layer");
         return _addressRepository.GetAddress();
     } 
     
     public AddressModel PostAddress(AddressModel addressModel)
     {
+        MonitorService.Log.Debug("Entered PostAddress in service layer");
         return _addressRepository.PostAddress(addressModel);
     }
 }
