@@ -2,8 +2,8 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY . /app
-RUN npm -g install
-RUN ng build --configuration=$TARGET
+RUN npm install
+RUN node_modules/.bin/ng build --configuration=$TARGET
 
 # Stage 2: Setup Nginx and serve built Angular application
 FROM nginx:alpine
