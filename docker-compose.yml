@@ -3,7 +3,7 @@ services:
     image: postgres
     restart: always
     shm_size: 128mb
-    hostname: app-database
+    hostname: database
     volumes:
       - ./db/data:/var/lib/postgresql/data
     environment:
@@ -40,7 +40,7 @@ services:
     secrets:
       - db_password
     depends_on:
-      - app-database
+      - database
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
@@ -58,6 +58,19 @@ services:
       - 8080:8080
     secrets:
       - watchtower_http_api_token
+  
+  seq:
+    image: datalust/seq
+    ports:
+      - 5341:5341
+      - 5342:80
+    volumes:
+      - rps_seq_data:/data
+    environment:
+      - ACCEPT_EULA=Y
+
+volumes:
+  rps_seq_data:
 
 secrets:
   db_password:
