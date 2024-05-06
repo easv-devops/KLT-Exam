@@ -12,7 +12,7 @@ public static class MonitorService
         Serilog.Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .WriteTo.Console()
-            .WriteTo.Seq(Environment.GetEnvironmentVariable("seq"))
+            .WriteTo.Seq(Environment.GetEnvironmentVariable("seq")!)
             .CreateLogger();
     }
 }
