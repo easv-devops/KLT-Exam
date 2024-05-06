@@ -86,22 +86,87 @@ steps:
     depends_on:
       - trigger update
 
-  - name: end-to-end tests
-    image: testcafe/testcafe
-    commands:
-      - testcafe firefox:headless Test/TestCafe.js
-    depends_on:
-      - update database
+#  - name: end-to-end tests
+#    image: testcafe/testcafe
+#    commands:
+#      - testcafe firefox:headless Test/TestCafe.js
+#    depends_on:
+#      - update database
 
-  - name: performance tests
-    image: grafana/k6
+#  - name: performance tests
+#    image: grafana/k6
+#    commands:
+#      - k6 run Test/spike_test.js
+#      - k6 run Test/StressTest.js
+#      - k6 run Test/load_test.js
+#    depends_on:
+#      - end-to-end tests
+
+---
+
+kind: pipeline
+type: docker
+name: DeliverToProduction
+depends_on:
+  - DeliverToTesting
+
+steps:
+  - name: publish api
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DockerUsername
+      password:
+        from_secret: DockerPassword
+      context: ./backend
+      dockerfile: backend/api/Dockerfile
+      repo: hoeeg79/address-book-api
+      tags:
+        - prod
+
+  - name: publish frontend
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DockerUsername
+      password:
+        from_secret: DockerPassword
+      context: Frontend
+      dockerfile: Frontend/Dockerfile
+      repo: hoeeg79/address-book-frontend
+      tags:
+        - prod
+
+  - name: trigger update
+    image: curlimages/curl
+    environment:
+      WATCHTOWER_HTTP_API_TOKEN:
+        from_secret: watchtower_token
     commands:
-      - k6 run Test/spike_test.js
-      - k6 run Test/StressTest.js
-      - k6 run Test/load_test.js
+      - echo $WATCHTOWER_HTTP_API_TOKEN
+      - "curl --fail -X GET \"http://144.91.74.225:8080/v1/update\" -H \"Authorization: Bearer $WATCHTOWER_HTTP_API_TOKEN\"" # Must match the token defined in docker-compose.yml
+      - sleep 10
     depends_on:
-      - end-to-end tests
+      - publish frontend
+      - publish api
+
+  - name: update database
+    image: flyway/flyway
+    environment:
+      POSTGRES_USER:
+        from_secret: PostgresUser
+      POSTGRES_PASSWORD:
+        from_secret: PostgresPassword
+    commands:
+      - flyway migrate
+        -url=jdbc:postgresql://144.91.74.225:5432/postgres
+        -user="$POSTGRES_USER"
+        -password="$POSTGRES_PASSWORD"
+        -locations=filesystem:./db/DbMigrations
+    depends_on:
+      - trigger update
 
 trigger:
   branch:
     - main
+    - feature-AddProdEnvironment

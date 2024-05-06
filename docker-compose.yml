@@ -3,7 +3,7 @@ services:
     image: postgres
     restart: always
     shm_size: 128mb
-    hostname: app-database
+    hostname: database
     volumes:
       - ./db/data:/var/lib/postgresql/data
     environment:
@@ -40,7 +40,7 @@ services:
     secrets:
       - db_password
     depends_on:
-      - app-database
+      - database
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 
