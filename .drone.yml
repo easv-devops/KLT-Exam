@@ -10,6 +10,8 @@ steps:
         from_secret: SonarQubeSecret
       PGPASSWORD:
         from_secret: PostgresPassword
+      seq:
+        from_secret: seq
     commands:
       #- exit 0
       - dotnet sonarscanner begin
