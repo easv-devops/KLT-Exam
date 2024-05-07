@@ -1,7 +1,7 @@
 # Stage 1: Build Angular application
 FROM node:18 AS buildFrontend
 WORKDIR /app
-COPY . /app
+COPY ../../Frontend /app
 RUN npm install
 RUN npm build
 
