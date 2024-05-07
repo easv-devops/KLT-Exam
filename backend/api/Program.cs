@@ -19,11 +19,9 @@ if (builder.Environment.IsProduction())
 builder.Services.AddSingleton<AddressService>();
 builder.Services.AddSingleton<AddressRepository>();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-var frontEndRelativePath = "./../frontend/www";
+
+var frontEndRelativePath = "./www";
+builder.Services.AddSpaStaticFiles(conf => conf.RootPath = frontEndRelativePath);
 
 
 
@@ -32,6 +30,8 @@ var frontEndRelativePath = "./../frontend/www";
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+
 
 var app = builder.Build();
 
@@ -48,6 +48,9 @@ app.UseCors(options =>
         .AllowAnyMethod()
         .AllowAnyHeader();
 });
+
+app.UseSpaStaticFiles();
+app.UseSpa(conf => { conf.Options.SourcePath = frontEndRelativePath; });
 
 app.UseAuthentication();
 app.UseAuthorization();

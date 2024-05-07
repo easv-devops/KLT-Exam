@@ -1,3 +1,10 @@
+# Stage 1: Build Angular application
+FROM node:18 AS buildFrontend
+WORKDIR /app
+COPY . /app
+RUN npm install
+RUN npm build
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -16,5 +23,7 @@ RUN dotnet publish "api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
+
+COPY --from=buildFrontend /app/www ./www
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "api.dll"]
