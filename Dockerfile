@@ -3,7 +3,7 @@ FROM node:18 AS buildFrontend
 WORKDIR /app
 COPY ./Frontend /app
 RUN npm install
-RUN npm build
+RUN node_modules/.bin/ng build
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
