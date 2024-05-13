@@ -10,7 +10,7 @@ public class AddressRepository
 
     public AddressRepository(NpgsqlDataSource? dataSource)
     {
-        if (_dataSource != null)
+        if (dataSource != null)
         {
             _dataSource = dataSource;   
         }
