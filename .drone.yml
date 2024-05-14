@@ -138,7 +138,7 @@ steps:
       password:
         from_secret: DockerPassword
       context: Frontend
-      dockerfile: Frontend/Dockerfile
+      dockerfile: Frontend/Dockerfile.prod
       repo: hoeeg79/address-book-frontend
       tags:
         - prod
