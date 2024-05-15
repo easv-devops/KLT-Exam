@@ -175,4 +175,3 @@ steps:
 trigger:
   branch:
     - main
-    - fix-DroneDoNotLikeEnvironmentVariable
